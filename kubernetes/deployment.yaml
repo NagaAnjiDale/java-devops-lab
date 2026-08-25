@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: java-devops-lab
-          image: nagaanjaneuludale/java-devops-lab:f3230c5e60a1006260cc2b47aafd1674322dd6a9
+          image: nagaanjaneuludale/java-devops-lab:92f76bf6fd4905f458e2eacc32ed23ae3a9b484b
           imagePullPolicy: IfNotPresent
 
           ports:
