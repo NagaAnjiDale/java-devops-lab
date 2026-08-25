@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: java-devops-lab
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: java-devops-lab
+
+  template:
+    metadata:
+      labels:
+        app: java-devops-lab
+
+    spec:
+      containers:
+        - name: java-devops-lab
+          image: nagaanjaneuludale/java-devops-lab:1.0
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 8080
