@@ -50,7 +50,7 @@ spec:
 
           readinessProbe:
             httpGet:
-              path: /actuator/health/readiness
+              path: /actuator/health/does-not-exist
               port: 8080
             initialDelaySeconds: 10
             periodSeconds: 5
