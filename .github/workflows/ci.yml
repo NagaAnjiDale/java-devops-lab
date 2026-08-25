@@ -4,10 +4,24 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'src/**'
+      - 'pom.xml'
+      - 'mvnw'
+      - '.mvn/**'
+      - 'Dockerfile'
+      - '.github/workflows/ci.yml'
 
   pull_request:
     branches:
       - main
+    paths:
+      - 'src/**'
+      - 'pom.xml'
+      - 'mvnw'
+      - '.mvn/**'
+      - 'Dockerfile'
+      - '.github/workflows/ci.yml'
   
 permissions:
   contents: write
