@@ -8,6 +8,9 @@ on:
   pull_request:
     branches:
       - main
+  
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -47,3 +50,18 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/java-devops-lab:${{ github.sha }}
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/java-devops-lab:latest  
+      
+      - name: Update Kubernetes image tag
+        if: github.event_name == 'push'
+        run: |
+          sed -i "s|image: nagaanjaneuludale/java-devops-lab:.*|image: nagaanjaneuludale/java-devops-lab:${{ github.sha }}|" kubernetes/deployment.yaml
+
+      - name: Commit Kubernetes manifest update
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add kubernetes/deployment.yaml
+          git commit -m "Update deployment image to ${{ github.sha }} [skip ci]"
+          git push    
